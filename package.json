@@ -1,10 +1,9 @@
 {
   "name": "web-tracing-server",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "description": "【Server端】基于 JS 跨平台插件，为前端项目提供【 行为、性能、异常、请求、资源、路由、曝光、录屏 】监控手段",
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
