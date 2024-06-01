@@ -7,6 +7,10 @@ import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from './filter/all.filter';
 import { BullModule } from '@nestjs/bull';
+import { PvModule } from './pv/pv.module';
+import { PerformanceModule } from './performance/performance.module';
+import { PvDurationModule } from './pv-duration/pv-duration.module';
+import { ErrorModule } from './error/error.module';
 
 @Module({
   imports: [
@@ -48,6 +52,10 @@ import { BullModule } from '@nestjs/bull';
         },
       }),
     }),
+    PvModule,
+    PerformanceModule,
+    PvDurationModule,
+    ErrorModule,
   ],
   controllers: [AppController],
   providers: [
