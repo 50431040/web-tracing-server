@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
+import { APP_FILTER } from '@nestjs/core';
+import { AllExceptionsFilter } from './filter/all.filter';
 
 @Module({
   imports: [
@@ -37,6 +39,12 @@ import { RedisModule } from '@liaoliaots/nestjs-redis';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
+    },
+  ],
 })
 export class AppModule {}
