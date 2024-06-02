@@ -6,7 +6,9 @@ export class PvDurationEventInfo extends PvEventInfo {
   durationTime: number;
 }
 
-@Schema()
+@Schema({
+  collection: 'pv-duration',
+})
 export class PvDurationModel extends BaseSchema {
   @Prop()
   eventInfo: PvDurationEventInfo;

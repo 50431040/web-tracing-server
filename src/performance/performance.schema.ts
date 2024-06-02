@@ -44,7 +44,9 @@ class PerformanceEventInfo extends BaseEvent {
   recordscreen?: string;
 }
 
-@Schema()
+@Schema({
+  collection: 'performance',
+})
 export class PerformanceModel extends BaseSchema {
   @Prop()
   eventInfo: PerformanceEventInfo;

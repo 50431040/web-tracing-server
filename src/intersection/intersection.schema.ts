@@ -12,7 +12,9 @@ class IntersectionEventInfo extends BaseEvent {
   threshold: number;
 }
 
-@Schema()
+@Schema({
+  collection: 'intersection',
+})
 export class IntersectionModel extends BaseSchema {
   @Prop()
   eventInfo: IntersectionEventInfo;

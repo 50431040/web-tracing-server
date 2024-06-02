@@ -9,7 +9,9 @@ export class PvEventInfo extends BaseEvent {
   title: string;
 }
 
-@Schema()
+@Schema({
+  collection: 'pv',
+})
 export class PvModel extends BaseSchema {
   @Prop()
   eventInfo: PvEventInfo;

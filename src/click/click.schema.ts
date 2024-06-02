@@ -11,7 +11,9 @@ class ClickEventInfo extends BaseEvent {
   y: number;
 }
 
-@Schema()
+@Schema({
+  collection: 'click',
+})
 export class ClickModel extends BaseSchema {
   @Prop()
   eventInfo: ClickEventInfo;

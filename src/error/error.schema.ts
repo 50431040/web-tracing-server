@@ -17,7 +17,9 @@ class ErrorEventInfo extends BaseEvent {
   params?: Mixed;
 }
 
-@Schema()
+@Schema({
+  collection: 'error',
+})
 export class ErrorModel extends BaseSchema {
   @Prop()
   eventInfo: ErrorEventInfo;
