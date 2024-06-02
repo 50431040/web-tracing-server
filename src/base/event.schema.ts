@@ -1,7 +1,10 @@
 import { Prop } from '@nestjs/mongoose';
-import { Mixed } from 'mongoose';
+import { Mixed, Types } from 'mongoose';
 
 export class BaseEventModel {
+  @Prop({ required: true, type: Types.ObjectId })
+  _baseId: Types.ObjectId;
+
   @Prop({ type: Object })
   eventId: Mixed;
   /** 事件类型 */

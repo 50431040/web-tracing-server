@@ -1,7 +1,10 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
 import { Mixed } from 'mongoose';
 
-class BaseInfoModel {
+@Schema({
+  collection: 'base-info',
+})
+export class BaseInfoModel {
   @Prop()
   appCode: string;
 

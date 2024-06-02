@@ -9,5 +9,6 @@ export class EventController {
   @Post('track')
   async handleEvent(@Body() body: EventDto) {
     await this.eventService.handle(body);
+    return null;
   }
 }
