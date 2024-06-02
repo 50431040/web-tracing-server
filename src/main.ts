@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { ResponseInterceptor } from './interceptor/response.interceptor';
 import { getErrorMsg } from './utils/validate';
+import { json } from 'express';
 
 async function bootstrap() {
   const isProduction = process.env.NODE_ENV === 'prod';
@@ -25,6 +26,7 @@ async function bootstrap() {
       },
     }),
   );
+  app.use(json({ limit: '5mb' }));
   await app.listen(3000);
 }
 bootstrap();

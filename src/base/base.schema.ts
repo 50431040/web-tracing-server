@@ -58,6 +58,9 @@ export class BaseInfoModel {
 
   @Prop()
   vendor: string;
+
+  @Prop({ default: Date.now() })
+  createTime: number;
 }
 
 export const BaseInfoSchema = SchemaFactory.createForClass(BaseInfoModel);

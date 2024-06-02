@@ -23,4 +23,7 @@ export class BaseEventModel {
   @Prop()
   /** 触发时间 */
   triggerTime: number;
+
+  @Prop({ default: Date.now() })
+  createTime: number;
 }
