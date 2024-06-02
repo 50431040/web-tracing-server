@@ -13,6 +13,7 @@ import { PvDurationModule } from './pv-duration/pv-duration.module';
 import { ErrorModule } from './error/error.module';
 import { ClickModule } from './click/click.module';
 import { IntersectionModule } from './intersection/intersection.module';
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [
@@ -60,6 +61,7 @@ import { IntersectionModule } from './intersection/intersection.module';
     ErrorModule,
     ClickModule,
     IntersectionModule,
+    EventModule,
   ],
   controllers: [AppController],
   providers: [

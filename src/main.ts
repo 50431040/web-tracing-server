@@ -6,6 +6,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ResponseInterceptor } from './interceptor/response.interceptor';
+import { getErrorMsg } from './utils/validate';
 
 async function bootstrap() {
   const isProduction = process.env.NODE_ENV === 'prod';
@@ -16,9 +17,7 @@ async function bootstrap() {
     new ValidationPipe({
       transform: true,
       exceptionFactory: (errors) => {
-        const msg = isProduction
-          ? 'Invalid params!'
-          : Object.values(errors[0].constraints)[0];
+        const msg = isProduction ? 'Invalid params!' : getErrorMsg(errors);
         return new BadRequestException({
           message: msg,
           code: HttpStatus.BAD_REQUEST,

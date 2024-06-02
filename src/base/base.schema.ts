@@ -20,7 +20,7 @@ class BaseInfo {
   @Prop()
   deviceId: string;
 
-  @Prop()
+  @Prop({ type: Object })
   ext: Mixed;
 
   @Prop()
@@ -58,5 +58,6 @@ class BaseInfo {
 }
 
 export class BaseSchema {
+  @Prop()
   baseInfo: BaseInfo;
 }
