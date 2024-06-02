@@ -1,17 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { BaseSchema } from '../base/base.schema';
-import { PvEventInfo } from '../pv/pv.schema';
-
-export class PvDurationEventInfo extends PvEventInfo {
-  durationTime: number;
-}
-
+import { BaseEventModel } from '../base/event.schema';
 @Schema({
   collection: 'pv-duration',
 })
-export class PvDurationModel extends BaseSchema {
+export class PvDurationModel extends BaseEventModel {
+  /** 触发动作 */
   @Prop()
-  eventInfo: PvDurationEventInfo;
+  action: string;
+
+  @Prop()
+  referer: string;
+
+  @Prop()
+  title: string;
+
+  @Prop()
+  durationTime: number;
 }
 
 export const PvDurationSchema = SchemaFactory.createForClass(PvDurationModel);

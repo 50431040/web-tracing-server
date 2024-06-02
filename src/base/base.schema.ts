@@ -1,7 +1,7 @@
-import { Prop } from '@nestjs/mongoose';
+import { Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Mixed } from 'mongoose';
 
-class BaseInfo {
+class BaseInfoModel {
   @Prop()
   appCode: string;
 
@@ -57,7 +57,4 @@ class BaseInfo {
   vendor: string;
 }
 
-export class BaseSchema {
-  @Prop()
-  baseInfo: BaseInfo;
-}
+export const BaseInfoSchema = SchemaFactory.createForClass(BaseInfoModel);

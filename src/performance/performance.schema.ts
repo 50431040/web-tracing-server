@@ -1,55 +1,107 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { BaseSchema } from '../base/base.schema';
-import { BaseEvent } from '../base/event.schema';
+import { BaseEventModel } from '../base/event.schema';
 import { Mixed } from 'mongoose';
-
-class PerformanceEventInfo extends BaseEvent {
-  /** 页面性能 */
-  dom?: number;
-  firstbyte?: number;
-  fmp?: number;
-  loadon?: number;
-  ready?: number;
-  res?: number;
-  ssllink?: number;
-  trans?: number;
-  ttfb?: number;
-  tti?: number;
-
-  /** 资源加载 */
-  connectEnd?: number;
-  connectStart?: number;
-  decodedBodySize?: number;
-  domainLookupEnd?: number;
-  domainLookupStart?: number;
-  encodedBodySize?: number;
-  fetchStart?: number;
-  initiatorType?: string;
-  requestStart?: number;
-  responseEnd?: number;
-  responseStart?: number;
-  startTime?: number;
-  transferSize?: number;
-
-  /** 资源加载、接口请求共有 */
-  requestUrl?: string;
-  duration?: number;
-
-  /** 接口请求 */
-  params?: Mixed;
-  requestMethod?: string;
-  requestType?: string;
-  responseStatus: number;
-  errMessage?: string;
-  recordscreen?: string;
-}
 
 @Schema({
   collection: 'performance',
 })
-export class PerformanceModel extends BaseSchema {
+export class PerformanceModel extends BaseEventModel {
+  /** 页面性能 */
   @Prop()
-  eventInfo: PerformanceEventInfo;
+  dom?: number;
+
+  @Prop()
+  firstbyte?: number;
+
+  @Prop()
+  fmp?: number;
+
+  @Prop()
+  loadon?: number;
+
+  @Prop()
+  ready?: number;
+
+  @Prop()
+  res?: number;
+
+  @Prop()
+  ssllink?: number;
+
+  @Prop()
+  trans?: number;
+
+  @Prop()
+  ttfb?: number;
+
+  @Prop()
+  tti?: number;
+
+  /** 资源加载 */
+  @Prop()
+  connectEnd?: number;
+
+  @Prop()
+  connectStart?: number;
+
+  @Prop()
+  decodedBodySize?: number;
+
+  @Prop()
+  domainLookupEnd?: number;
+
+  @Prop()
+  domainLookupStart?: number;
+
+  @Prop()
+  encodedBodySize?: number;
+
+  @Prop()
+  fetchStart?: number;
+
+  @Prop()
+  initiatorType?: string;
+
+  @Prop()
+  requestStart?: number;
+
+  @Prop()
+  responseEnd?: number;
+
+  @Prop()
+  responseStart?: number;
+
+  @Prop()
+  startTime?: number;
+
+  @Prop()
+  transferSize?: number;
+
+  /** 资源加载、接口请求共有 */
+  @Prop()
+  requestUrl?: string;
+
+  @Prop()
+  duration?: number;
+
+  /** 接口请求 */
+  @Prop({ type: Object })
+  params?: Mixed;
+
+  @Prop()
+  requestMethod?: string;
+
+  @Prop()
+  requestType?: string;
+
+  @Prop()
+  responseStatus: number;
+
+  @Prop()
+  errMessage?: string;
+
+  @Prop()
+  recordscreen?: string;
 }
 
 export const PerformanceSchema = SchemaFactory.createForClass(PerformanceModel);

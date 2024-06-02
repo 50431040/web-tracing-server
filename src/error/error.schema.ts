@@ -1,28 +1,30 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { BaseSchema } from '../base/base.schema';
-import { BaseEvent } from '../base/event.schema';
+import { BaseEventModel } from '../base/event.schema';
 import { Mixed } from 'mongoose';
-
-class ErrorEventInfo extends BaseEvent {
-  errMessage: string;
-
-  /** 代码报错 */
-  col?: string;
-  errStack?: string;
-  line?: string;
-
-  recordscreen?: string;
-
-  /** 自定义错误 */
-  params?: Mixed;
-}
 
 @Schema({
   collection: 'error',
 })
-export class ErrorModel extends BaseSchema {
+export class ErrorModel extends BaseEventModel {
   @Prop()
-  eventInfo: ErrorEventInfo;
+  errMessage: string;
+
+  /** 代码报错 */
+  @Prop()
+  col?: string;
+
+  @Prop()
+  errStack?: string;
+
+  @Prop()
+  line?: string;
+
+  @Prop()
+  recordscreen?: string;
+
+  /** 自定义错误 */
+  @Prop({ type: Object })
+  params?: Mixed;
 }
 
 export const ErrorSchema = SchemaFactory.createForClass(ErrorModel);

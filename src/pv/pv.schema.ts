@@ -1,20 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { BaseSchema } from '../base/base.schema';
-import { BaseEvent } from '../base/event.schema';
-
-export class PvEventInfo extends BaseEvent {
-  /** 触发动作 */
-  action: string;
-  referer: string;
-  title: string;
-}
+import { BaseEventModel } from '../base/event.schema';
 
 @Schema({
   collection: 'pv',
 })
-export class PvModel extends BaseSchema {
+export class PvModel extends BaseEventModel {
+  /** 触发动作 */
   @Prop()
-  eventInfo: PvEventInfo;
+  action: string;
+
+  @Prop()
+  referer: string;
+
+  @Prop()
+  title: string;
 }
 
 export const PvSchema = SchemaFactory.createForClass(PvModel);
