@@ -12,6 +12,7 @@ import { ErrorModule } from './error/error.module';
 import { ClickModule } from './click/click.module';
 import { IntersectionModule } from './intersection/intersection.module';
 import { EventModule } from './event/event.module';
+import { NetworkModule } from './network/network.module';
 
 @Module({
   imports: [
@@ -60,6 +61,7 @@ import { EventModule } from './event/event.module';
     ClickModule,
     IntersectionModule,
     EventModule,
+    NetworkModule,
   ],
   providers: [
     {
