@@ -60,7 +60,7 @@ export class BaseInfoModel {
   vendor: string;
 
   @Prop({ default: Date.now() })
-  createTime: number;
+  _createTime: number;
 }
 
 export const BaseInfoSchema = SchemaFactory.createForClass(BaseInfoModel);

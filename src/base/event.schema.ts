@@ -25,5 +25,5 @@ export class BaseEventModel {
   triggerTime: number;
 
   @Prop({ default: Date.now() })
-  createTime: number;
+  _createTime: number;
 }
