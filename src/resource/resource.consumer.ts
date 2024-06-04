@@ -1,62 +1,29 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { BaseEventModel } from '../base/event.schema';
-import { Mixed } from 'mongoose';
+import { Processor, Process } from '@nestjs/bull';
+import { Job } from 'bull';
+import { Logger } from '@nestjs/common';
+import {
+  RESOURCE_EVENT_DEFAULT_HANDLER,
+  RESOURCE_EVENT_QUEUE,
+} from '../base/queue';
+import { ResourceService } from './resource.service';
+import { ResourceModel } from './resource.schema';
 
-@Schema({
-  collection: 'resource',
-})
-export class ResourceModel extends BaseEventModel {
-  /** 资源加载 */
-  @Prop()
-  connectEnd?: number;
+@Processor(RESOURCE_EVENT_QUEUE)
+export class ResourceConsumer {
+  constructor(private readonly resourceService: ResourceService) {}
 
-  @Prop()
-  connectStart?: number;
+  logger = new Logger(ResourceConsumer.name);
 
-  @Prop()
-  decodedBodySize?: number;
-
-  @Prop()
-  domainLookupEnd?: number;
-
-  @Prop()
-  domainLookupStart?: number;
-
-  @Prop()
-  encodedBodySize?: number;
-
-  @Prop()
-  fetchStart?: number;
-
-  @Prop()
-  initiatorType?: string;
-
-  @Prop()
-  requestStart?: number;
-
-  @Prop()
-  responseEnd?: number;
-
-  @Prop()
-  responseStart?: number;
-
-  @Prop()
-  startTime?: number;
-
-  @Prop()
-  transferSize?: number;
-
-  @Prop()
-  requestUrl?: string;
-
-  @Prop()
-  duration?: number;
-
-  @Prop()
-  redirectStart?: number;
-
-  @Prop()
-  redirectEnd?: number;
+  @Process(RESOURCE_EVENT_DEFAULT_HANDLER)
+  async handleEvent(job: Job<ResourceModel>) {
+    const event = job.data;
+    try {
+      await this.resourceService.insertResourceEvent(event);
+    } catch (err) {
+      this.logger.error(err);
+      job.moveToFailed({
+        message: err,
+      });
+    }
+  }
 }
-
-export const PResourceSchema = SchemaFactory.createForClass(ResourceModel);

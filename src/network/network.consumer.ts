@@ -6,7 +6,7 @@ import { NetworkService } from './network.service';
 import {
   NETWORK_EVENT_DEFAULT_HANDLER,
   NETWORK_EVENT_QUEUE,
-} from 'src/base/queue';
+} from '../base/queue';
 
 @Processor(NETWORK_EVENT_QUEUE)
 export class NetworkConsumer {

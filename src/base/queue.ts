@@ -48,3 +48,9 @@ export const NETWORK_EVENT_QUEUE = 'networkEvent';
 
 // network事件默认消费者
 export const NETWORK_EVENT_DEFAULT_HANDLER = 'networkEventDefaultHandler';
+
+// resource事件队列
+export const RESOURCE_EVENT_QUEUE = 'resourceEvent';
+
+// resource事件默认消费者
+export const RESOURCE_EVENT_DEFAULT_HANDLER = 'resourceEventDefaultHandler';

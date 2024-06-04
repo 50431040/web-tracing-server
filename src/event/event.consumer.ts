@@ -13,6 +13,7 @@ import { ErrorService } from '../error/error.service';
 import { PerformanceService } from '../performance/performance.service';
 import { IntersectionService } from '../intersection/intersection.service';
 import { NetworkService } from '../network/network.service';
+import { ResourceService } from '../resource/resource.service';
 
 @Processor(EVENT_QUEUE)
 export class EventConsumer {
@@ -25,6 +26,7 @@ export class EventConsumer {
     private readonly performanceService: PerformanceService,
     private readonly intersectionService: IntersectionService,
     private readonly networkService: NetworkService,
+    private readonly resourceService: ResourceService,
   ) {}
 
   logger = new Logger(EventConsumer.name);
@@ -58,7 +60,9 @@ export class EventConsumer {
             // 网络请求
             if (event.eventId === 'server') {
               await this.networkService.handleNetworkEvent(id, event);
-            } else {
+            } else if (event.eventId === 'resource') {
+              await this.resourceService.handleResourceEvent(id, event);
+            } else if (event.eventId === 'page') {
               await this.performanceService.handlePerformanceEvent(id, event);
             }
             break;

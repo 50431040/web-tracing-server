@@ -12,7 +12,8 @@ import { ClickModule } from '../click/click.module';
 import { ErrorModule } from '../error/error.module';
 import { PerformanceModule } from '../performance/performance.module';
 import { IntersectionModule } from '../intersection/intersection.module';
-import { NetworkModule } from 'src/network/network.module';
+import { NetworkModule } from '../network/network.module';
+import { ResourceModule } from '../resource/resource.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { NetworkModule } from 'src/network/network.module';
     PerformanceModule,
     IntersectionModule,
     NetworkModule,
+    ResourceModule,
     BullModule.registerQueue({
       name: EVENT_QUEUE,
     }),
