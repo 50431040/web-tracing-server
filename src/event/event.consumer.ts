@@ -12,6 +12,7 @@ import { ClickService } from '../click/click.service';
 import { ErrorService } from '../error/error.service';
 import { PerformanceService } from '../performance/performance.service';
 import { IntersectionService } from '../intersection/intersection.service';
+import { NetworkService } from '../network/network.service';
 
 @Processor(EVENT_QUEUE)
 export class EventConsumer {
@@ -23,6 +24,7 @@ export class EventConsumer {
     private readonly errorService: ErrorService,
     private readonly performanceService: PerformanceService,
     private readonly intersectionService: IntersectionService,
+    private readonly networkService: NetworkService,
   ) {}
 
   logger = new Logger(EventConsumer.name);
@@ -53,7 +55,12 @@ export class EventConsumer {
             await this.errorService.handleErrorEvent(id, event);
             break;
           case EventType.performance:
-            await this.performanceService.handlePerformanceEvent(id, event);
+            // 网络请求
+            if (event.eventId === 'server') {
+              await this.networkService.handleNetworkEvent(id, event);
+            } else {
+              await this.performanceService.handlePerformanceEvent(id, event);
+            }
             break;
           case EventType.intersection:
             await this.intersectionService.handleIntersectionEvent(id, event);

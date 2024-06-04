@@ -42,3 +42,9 @@ export const INTERSECTION_EVENT_QUEUE = 'intersectionEvent';
 // intersection事件默认消费者
 export const INTERSECTION_EVENT_DEFAULT_HANDLER =
   'intersectionEventDefaultHandler';
+
+// network事件队列
+export const NETWORK_EVENT_QUEUE = 'networkEvent';
+
+// network事件默认消费者
+export const NETWORK_EVENT_DEFAULT_HANDLER = 'networkEventDefaultHandler';
