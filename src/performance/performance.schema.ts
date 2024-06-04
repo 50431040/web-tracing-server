@@ -6,9 +6,14 @@ import { Mixed } from 'mongoose';
   collection: 'performance',
 })
 export class PerformanceModel extends BaseEventModel {
-  /** 页面性能 */
+  @Prop()
+  appcache?: number;
+
   @Prop()
   dom?: number;
+
+  @Prop()
+  dns?: number;
 
   @Prop()
   firstbyte?: number;
@@ -29,6 +34,9 @@ export class PerformanceModel extends BaseEventModel {
   ssllink?: number;
 
   @Prop()
+  tcp?: number;
+
+  @Prop()
   trans?: number;
 
   @Prop()
@@ -37,71 +45,11 @@ export class PerformanceModel extends BaseEventModel {
   @Prop()
   tti?: number;
 
-  /** 资源加载 */
   @Prop()
-  connectEnd?: number;
+  redirect?: number;
 
   @Prop()
-  connectStart?: number;
-
-  @Prop()
-  decodedBodySize?: number;
-
-  @Prop()
-  domainLookupEnd?: number;
-
-  @Prop()
-  domainLookupStart?: number;
-
-  @Prop()
-  encodedBodySize?: number;
-
-  @Prop()
-  fetchStart?: number;
-
-  @Prop()
-  initiatorType?: string;
-
-  @Prop()
-  requestStart?: number;
-
-  @Prop()
-  responseEnd?: number;
-
-  @Prop()
-  responseStart?: number;
-
-  @Prop()
-  startTime?: number;
-
-  @Prop()
-  transferSize?: number;
-
-  /** 资源加载、接口请求共有 */
-  @Prop()
-  requestUrl?: string;
-
-  @Prop()
-  duration?: number;
-
-  /** 接口请求 */
-  @Prop({ type: Object })
-  params?: Mixed;
-
-  @Prop()
-  requestMethod?: string;
-
-  @Prop()
-  requestType?: string;
-
-  @Prop()
-  responseStatus: number;
-
-  @Prop()
-  errMessage?: string;
-
-  @Prop()
-  recordscreen?: string;
+  unloadTime?: number;
 }
 
 export const PerformanceSchema = SchemaFactory.createForClass(PerformanceModel);
